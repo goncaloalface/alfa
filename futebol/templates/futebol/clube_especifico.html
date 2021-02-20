@@ -1,0 +1,22 @@
+{% extends 'futebol/base.html' %}
+
+{% block body %}
+
+<div class="container">
+    <h1><strong>{{ clube.nome }} <small>- {{  clube.sigla  }}</small></strong></h1>
+    <br>
+    <br>
+    <div class="row">
+         <div class="col-md-4">
+             <center><img src="{{ clube.imagem }}"></center>
+         </div>
+         <div class="col-md-8">
+             <h3>{{clube.historia}}</h3>
+             <a href="{{clube.wiki}}"> <h3>Mais informacoes aqui.</h3></a>
+         </div>
+    </div>
+
+
+
+</div>
+{% endblock %}

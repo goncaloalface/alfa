@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Alfa - Porque estamos no topo{% endblock %}</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="{% static 'futebol/style.css'%}"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+
+
+
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+        <div class="container">
+
+            <!-- Header -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{% url 'futebol:index'%}"><span class="glyphicon glyphicon-fire" aria-hidden="true">  </span>Alfa</a>
+            </div>
+
+            <!-- Itens -->
+            <div class="collapse navbar-collapse" id="topNavBar">
+
+                <ul class="nav navbar-nav">
+                    <li class="">
+                        <a href="{% url 'futebol:noticias'%}">
+                            <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>&nbsp; Notícias
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="{% url 'futebol:clubes'%}">
+                            <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>&nbsp; Clubes
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="{% url 'futebol:agenda'%}">
+                            <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>&nbsp; Agenda
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="{% url 'futebol:estatisticas'%}">
+                            <span class="glyphicon glyphicon-stats" aria-hidden="true"></span>&nbsp; Estatísticas
+                        </a>
+                    </li>
+
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="" data-toggle="modal" data-target="#popUpWindow">
+                        {% if not request.user.is_authenticated %}
+                        <li class="">
+                            <a href="{% url 'futebol:register'%}">
+                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&nbsp; Registar
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="{% url 'futebol:login'%}">
+                                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp; Login
+                            </a>
+                        </li>
+                        {% else %}
+                        <li class="">
+                            <a href="{% url 'futebol:logout'%}">
+                                <strong>{{user.username}}</strong> &nbsp;
+                               <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp; Logout
+                            </a>
+                        </li>
+                        {% endif %}
+                    </li>
+                </ul>
+
+            </div>
+
+        </div>
+    </nav>
+    <div class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
+        <div class="container">
+            <div class="navbar-text pull-right">
+                <p>
+                    <a href="{% url 'futebol:about'%}">
+                        <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>&nbsp;About
+                    </a>
+                    <a href="{% url 'futebol:contactos'%}">
+                        <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>&nbsp;Contactos
+                    </a>
+               </p>
+            </div>
+            <div class="navbar-text pull-left">
+                <p> &copy; 2016 Alfa.</p>
+            </div>
+        </div>
+    </div>
+
+
+{% block body %}
+{% endblock %}
+
+
+
+</body>
+</html>
+

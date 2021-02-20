@@ -1,0 +1,116 @@
+{% extends 'futebol/base.html' %}
+
+{% block body %}
+
+<div class="container">
+    <div class="jumbotron">
+        <h1><strong>Agenda!</strong></h1>
+        <p>Os ultimos encontros no mundo do futebol!</p>
+
+</div>
+<div class="container"><h1><strong>Ultimos Jogos da Liga Portuguesa</strong></h1></div>
+
+ <hr class="featurette-divider">
+<div class="container">
+
+        <u><h3>Ultima Jornada</h3></u>
+        <table class="table center-table">
+            <thead>
+                <tr class="info">
+                    <th><i>Equipa da Casa</i></th>
+                    <th><i>Resultado</i></th>
+                    <th><span style="float: right"><i>Equipa de Fora</i></span></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ultimajornada in all_ultimajornada %}
+                <tr class="info">
+                    <td><strong><img src="{{ ultimajornada.ImagemDaCasa30x30 }}"> {{ ultimajornada.EquipaDaCasa }}</strong></td>
+                    <td>{{ ultimajornada.resultado }}</td>
+                    <td><strong> <span style="float: right"><img src="{{ ultimajornada.ImagemDaFora30x30 }}"> {{ ultimajornada.EquipaDaFora }}</span> </strong></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+         </table>
+    </div>
+
+ <hr class="featurette-divider">
+
+<div class="container">
+       <u> <h3>Penultima Jornada</h3></u>
+        <table class="table center-table">
+            <thead>
+                <tr class="info">
+                    <th><i>Equipa da Casa</i></th>
+                    <th><i>Resultado</i></th>
+                    <th><span style="float: right"><i>Equipa de Fora</i></span></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for penultimajornada in all_penultimajornada %}
+                <tr class="info">
+                    <td><strong><img src="{{ penultimajornada.ImagemDaCasa30x30}}"> {{ penultimajornada.EquipaDaCasa }}</strong></td>
+                    <td>{{ penultimajornada.resultado }}</td>
+                    <td><strong> <span style="float: right"><img src="{{ penultimajornada.ImagemDaFora30x30 }}"> {{ penultimajornada.EquipaDaFora }}</span> </strong></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+         </table>
+</div>
+
+<hr class="featurette-divider">
+
+<div class="container"><h1><strong>Ultimos Jogos da Liga dos Campeoes</strong></h1></div>
+ <hr class="featurette-divider">
+<div class="container">
+        <u><h3>Meias-de-final</h3></u>
+        <table class="table center-table">
+            <thead>
+                <tr class="info">
+                    <th><i>Equipa da Casa</i></th>
+                    <th><i>Resultado</i></th>
+                    <th><span style="float: right"><i>Equipa de Fora</i></span></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for meias in all_meias %}
+                <tr class="info">
+                    <td><strong><img src="{{ meias.ImagemDaCasa30x30 }}"> {{ meias.EquipaDaCasa }}</strong></td>
+                    <td>{{ meias.resultado }}</td>
+                    <td><strong> <span style="float: right"><img src="{{ meias.ImagemDaFora30x30 }}"> {{ meias.EquipaDaFora }}</span> </strong></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+</div>
+
+ <hr class="featurette-divider">
+
+<div class="container">
+        <u><h3>Quartos-de-final</h3></u>
+        <table class="table center-table">
+            <thead>
+                <tr class="info">
+                    <th><i>Equipa da Casa</i></th>
+                    <th><i>Resultado</i></th>
+                    <th><span style="float: right"><i>Equipa de Fora</i></span></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for quartos in all_quartos %}
+                <tr class="info">
+                    <td><strong><img src="{{ quartos.ImagemDaCasa30x30 }}"> {{ quartos.EquipaDaCasa }}</strong></td>
+                    <td>{{ quartos.resultado }}</td>
+                    <td><strong> <span style="float: right"><img src="{{ quartos.ImagemDaFora30x30 }}"> {{ quartos.EquipaDaFora }}</span> </strong></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+</div>
+
+
+ <hr class="featurette-divider">
+
+
+
+{% endblock %}

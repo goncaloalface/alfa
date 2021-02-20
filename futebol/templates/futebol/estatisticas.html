@@ -1,0 +1,129 @@
+{% extends 'futebol/base.html' %}
+
+{% block body %}
+
+<div class="container">
+    <div class="jumbotron">
+        <h1><strong>Estatisticas!</strong></h1>
+        <p>As estatisticas do mundo do futebol!</p>
+
+</div>
+
+
+<div class="container">
+    <h1><strong>Classificacao</strong></h1>
+        <table class="table center-table">
+            <thead>
+                <tr class="info">
+                    <th><i>Clube</i></th>
+                    <th><i>P</i></th>
+                    <th><i>J</i></th>
+                    <th><i>V</i></th>
+                    <th><i>E</i></th>
+                    <th><i>D</i></th>
+                    <th><i>GM</i></th>
+                    <th><i>GS</i></th>
+                </tr>
+            </thead>
+            <tbody>
+                 {% for classificacao in all_classificacao %}
+                 <tr class="info">
+                     <td><strong><img src="{{ classificacao.imagem }}" width="30" height="30"> {{ classificacao.clube }}</strong></td>
+                     <td>{{ classificacao.pontos }}</td>
+                     <td>{{ classificacao.jogos }}</td>
+                     <td>{{ classificacao.vitorias }}</td>
+                     <td>{{ classificacao.empates }}</td>
+                     <td>{{ classificacao.derrotas }}</td>
+                     <td>{{ classificacao.golos_marcados }}</td>
+                     <td>{{ classificacao.golos_sofridos }}</td>
+
+                 </tr>
+                {% endfor %}
+            </tbody>
+         </table>
+</div>
+
+
+<br>
+
+    <hr class="featurette-divider">
+
+
+<div class="container">
+<h1> <strong>Melhores Jogadores </strong></h1>
+            <div class="row featurette">
+                <div class="col-md-4">
+
+                        <table class="table center-table">
+                            <thead>
+                            <u><h3>Melhores Marcadores da Primeira Liga</h3></u>
+                                <tr class="info">
+                                    <th><i>Jogador</i></th>
+                                    <th><i>Clube</i></th>
+                                    <th><span style="float: right"><i>Golos</i></span></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for melhores in all_melhoresPortugal%}
+                                <tr class="info">
+                                    <td>{{ melhores.nome }}</td>
+                                    <td>{{ melhores.clube }}</td>
+                                    <td> {{ melhores.pontos }}</td>
+                                </tr>
+                             {% endfor %}
+                            </tbody>
+                         </table>
+                </div>
+                <div class="col-md-4">
+                    <table class="table center-table">
+                            <thead>
+                            <u><h3>Melhores Marcadores da Europa</h3></u>
+                                <tr class="info">
+                                    <th><i>Jogador</i></th>
+                                    <th><i>Clube</i></th>
+                                    <th><span style="float: right"><i>Golos</i></span></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for melhores in all_melhoresEuropa%}
+                                <tr class="info">
+                                    <td>{{ melhores.nome }}</td>
+                                    <td>{{ melhores.clube }}</td>
+                                    <td> {{ melhores.pontos }}</td>
+                                </tr>
+                             {% endfor %}
+                            </tbody>
+                         </table>
+                </div>
+                <div class="col-md-4">
+                    <table class="table center-table">
+                            <thead>
+                            <u><h3>Mais assistencias na Primeira Liga</h3></u>
+                                <tr class="info">
+                                    <th><i>Jogador</i></th>
+                                    <th><i>Clube</i></th>
+                                    <th><span style="float: right"><i>Assistencias</i></span></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for melhores in all_melhoresAssistencias%}
+                                <tr class="info">
+                                    <td>{{ melhores.nome }}</td>
+                                    <td>{{ melhores.clube }}</td>
+                                    <td> {{ melhores.pontos }}</td>
+                                </tr>
+                             {% endfor %}
+                            </tbody>
+                         </table>
+                </div>
+            </div>
+</div>
+
+
+
+
+
+
+
+
+{% endblock %}

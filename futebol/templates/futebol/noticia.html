@@ -1,0 +1,41 @@
+{% extends 'futebol/base.html' %}
+
+{% block body %}
+
+<div class="container">
+
+      <div class="row row-offcanvas row-offcanvas-right">
+        <div class="col-md-12">
+          <p class="pull-right visible-xs">
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+          </p>
+          <div class="jumbotron">
+            <h1><strong>Noticias!</strong></h1>
+            <p>As noticias mais recentes e todos os exclusivos do mundo futebolistico!</p>
+          </div>
+          {% if all_noticias %}
+
+            {% for noticia in all_noticias %}
+              <br>
+              <center><img class="img-rounded" src="{{ noticia.imagem }}" width="500" height="300"></center>
+              <br>
+            <a href="/futebol/{{noticia.id}}/"><h1>{{ noticia.titulo }} <small>- {{  noticia.autor  }}</small></h1></a>
+
+                        <h4>{{ noticia.breve }}</h4>
+
+              <hr class="featurette-divider">
+            {% endfor %}
+
+          {% else %}
+                <h3>Não há noticias adicionadas</h3>
+          {% endif %}
+        </div><!--/span-->
+
+      </div><!--/row-->
+    </div>
+
+
+</div>
+
+
+{% endblock %}

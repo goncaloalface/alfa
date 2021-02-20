@@ -1,0 +1,188 @@
+{% extends 'futebol/base.html' %}
+
+{% block body %}
+
+<!--jumbotron-->
+<div class="jumbotron" style="background:">
+    <div class="container">
+        <h1> <strong><center><img src="/media/logo.jpg"> </center>Porque estamos no Topo!</strong></h1>
+        <p>A sua fonte de informação fiável e em primeira mão sobre a Primeira Liga e do mundo do Futebol!</p>
+        <p><a class="btn btn-primary btn-lg" href="{% url 'futebol:noticias'%}" role="button">Mais informações »</a></p>
+      </div>
+</div>
+
+<!--Noticias-->
+<div>
+    <hr class="featurette-divider">
+    <center><h1><strong>Noticias</strong></h1>
+    {% if all_organize %}
+        {% for organize in all_organize %}
+
+
+        <div class="container">
+            <div class="row featurette">
+                <div class="col-md-7">
+                    <a href="/futebol/{{organize.id}}/"><h2 class="featurette-heading">{{organize.titulo}}<span class="text-muted"><small>  {{organize.autor}}</small></span></h2></a>
+                    <p class="lead">{{organize.breve}}</p>
+
+                </div>
+                <div class="col-md-5">
+                    <img class="featurette-image img-responsive center-block" width="300" height="300" src="{{organize.imagem}}" data-holder-rendered="true">
+
+                </div>
+            </div>
+        </div>
+        <br>
+        <hr class="featurette-divider">
+        <br>
+        {% endfor %}
+    {% else %}
+        <center><p>Nao ha noticias adicionadas!</p></center>
+    {% endif %}
+
+</div>
+
+<!--Tabelas-->
+<div>
+    <div class="container">
+        <center><h1><strong>Jogos Recentes</strong></h1></center>
+
+            <h3>Ultimos jogos da Liga Portuguesa:</h3>
+            <br>
+            {% if all_portuguesa %}
+                <table class="table center-table">
+                    <thead>
+                        <tr class="info">
+                            <th><i>Equipa da Casa</i></th>
+                            <th><i>Resultado</i></th>
+                            <th><span style="float: right"><i>Equipa de Fora</i></span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                         {% for portuguesa in all_portuguesa %}
+                        <tr class="info">
+                            <td><strong><img src="{{ portuguesa.ImagemDaCasa30x30 }}"> {{ portuguesa.EquipaDaCasa }}</strong></td>
+                            <td>{{ portuguesa.resultado }}</td>
+                            <td><strong> <span style="float: right"><img src="{{ portuguesa.ImagemDaFora30x30 }}"> {{ portuguesa.EquipaDaFora }}</span> </strong></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                 </table>
+            {% else %}
+                <center><p>Nao ha jogos adicionados!</p></center>
+            {% endif %}
+    </div>
+        <br>
+    <div class="container">
+        <h3>Ultimos jogos da Liga dos Campeoes:</h3>
+        <br>
+        {% if all_campeoes %}
+        <table class="table center-table">
+                <thead>
+                    <tr class="info">
+                        <th><i>Equipa da Casa</i></th>
+                        <th><i>Resultado</i></th>
+                        <th><span style="float: right"><i>Equipa de Fora</i></span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for campeoes in all_campeoes %}
+                    <tr class="info">
+                        <td><strong><img src="{{ campeoes.ImagemDaCasa30x30 }}"> {{ campeoes.EquipaDaCasa }}</strong></td>
+                        <td>{{ campeoes.resultado }}</td>
+                        <td><strong> <span style="float: right"><img src="{{ campeoes.ImagemDaFora30x30 }}"> {{ campeoes.EquipaDaFora }}</span> </strong></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <center><p>Nao ha jogos adicionados!</p></center>
+        {% endif %}
+         <br>
+         <p><center><a class="btn btn-default" href="{% url 'futebol:agenda'%}" role="button">Mais Resultados »</a></center></p>
+    </div>
+
+</div>
+
+<br>
+
+<hr class="featurette-divider">
+
+<br>
+
+<!--Video da semana-->
+<div class="container">
+   <center><h1><strong>Video da Semana</strong></h1>
+       {% if all_videodasemana %}
+       <br>
+        {% for videodasemana in all_videodasemana %}
+        <iframe width="560" height="315" src="{{videodasemana.url}}" frameborder="0" allowfullscreen></iframe>
+        <h3>{{ videodasemana.texto }}</h3></center>
+        {% endfor %}
+
+    {% else %}
+        <center><p>Nao ha videos adicionados!</p></center>
+    {% endif %}
+</div>
+
+<br>
+
+<hr class="featurette-divider">
+
+<!--Estatisticas-->
+<div class="container marketing">
+   <center><h1><strong>Estatisticas</strong></h1>
+    <br>
+
+    <div class="row">
+
+        <div class="col-lg-4">
+            {% if all_melhoresPortugal %}
+                {% for melhoresPortugal in all_melhoresPortugal %}
+                    <img class="img-circle" src="{{melhoresPortugal.imagem}}" alt="Generic placeholder image" width="200" height="200">
+                    <p> <h3>Melhor marcador da Primeira Liga</h3><u><h4>{{melhoresPortugal.nome}}</h4></u></p>
+                    <p> {{melhoresPortugal.texto}}</p>
+                    <p><a class="btn btn-default" href="{% url 'futebol:estatisticas'%}" role="button">Saber mais »</a></p>
+                {% endfor %}
+            {% else %}
+                <center><p>Nao ha jogadores adicionados!</p></center>
+            {% endif %}
+        </div><!-- /.col-lg-4 -->
+
+
+
+        <div class="col-lg-4">
+            {% if all_melhoresEuropa %}
+                {% for melhoresEuropa in all_melhoresEuropa %}
+                    <img class="img-circle" src="{{melhoresEuropa.imagem}}" alt="Generic placeholder image" width="200" height="200">
+                    <p> <h3>Melhor marcador da Europa</h3><u><h4>{{melhoresEuropa.nome}}</h4></u></p>
+                    <p> {{melhoresEuropa.texto}}</p>
+                    <p><a class="btn btn-default" href="{% url 'futebol:estatisticas'%}" role="button">Saber mais »</a></p>
+                {% endfor %}
+            {% else %}
+                <center><p>Nao ha jogadores adicionados!</p></center>
+            {% endif %}
+        </div><!-- /.col-lg-4 -->
+
+
+
+        <div class="col-lg-4">
+            {% if all_melhoresAssistencias %}
+                {% for melhoresAssistencias in all_melhoresAssistencias %}
+                    <img class="img-circle" src="{{melhoresAssistencias.imagem}}" alt="Generic placeholder image" width="200" height="200">
+                    <p> <h3>Mais assistencias na Primeira Liga</h3><u><h4>{{melhoresAssistencias.nome}}</h4></u></p>
+                    <p> {{melhoresAssistencias.texto}}</p>
+                    <p><a class="btn btn-default" href="{% url 'futebol:estatisticas'%}" role="button">Saber mais »</a></p>
+                {% endfor %}
+            {% else %}
+                <center><p>Nao ha jogadores adicionados!</p></center>
+            {% endif %}
+        </div><!-- /.col-lg-4 -->
+        </div>
+    </div><!-- /.row -->
+
+
+<hr class="featurette-divider">
+
+
+{% endblock %}

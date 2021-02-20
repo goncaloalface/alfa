@@ -1,0 +1,46 @@
+{% extends 'futebol/base.html' %}
+{% load crispy_forms_tags %}
+{% block body %}
+
+
+<div class="container">
+     <h1><strong>{{ noticia.titulo }}</strong> <small>- <strong>{{  noticia.autor  }}</strong></small></h1>
+    <br>
+
+    <center><img class="img-rounded" src="{{ noticia.imagem }}" width="500" height="300"></center>
+
+    <br>
+
+    <h3>{{ noticia.texto }}</h3>
+
+    <br>
+</div>
+
+<div class="row">
+    <div class="col-md-8 col-md-push-2">
+    <h2><u>Comentarios:</u></h2>
+   {% if request.user.is_authenticated %}
+    <form method="POST" action=".">{% csrf_token %}
+        {{comment_form|crispy}}
+        <input type="submit" value="Enviar" class="btn btn-default">
+    </form>
+    {% else %}
+    <p>So pode comentar se estiver registado!</p>
+    {% endif %}
+
+    <hr class="featurette-divider">
+    {% for comment in comentarios %}
+       <blockquote>
+            <p><strong>{{comment.content}}</strong></p>
+
+            <footer><strong>{{comment.user}} à {{comment.timestamp|timesince}} atrás.</strong></footer>
+            <hr class="featurette-divider">
+        </blockquote>
+
+
+
+    {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

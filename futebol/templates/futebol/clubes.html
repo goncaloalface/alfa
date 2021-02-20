@@ -1,0 +1,25 @@
+{% extends 'futebol/base.html' %}
+
+{% block body %}
+
+<div class="container">
+    <div class="jumbotron">
+        <h1><strong>Clubes!</strong></h1>
+        <p>Os clubes da primeira liga portuguesa!</p>
+    </div>
+    {% if all_clubes %}
+    <ul>
+        {% for clube in all_clubes %}
+            <div class="container">
+               <center> <img src="{{ clube.imagem }}">
+                <a href="/futebol/clubes/{{clube.id}}/" ><h2>{{ clube.nome }} <small>- {{  clube.sigla  }}</small></h2></a>
+                <hr class="featurette-divider"> </center>
+            </div>
+        {% endfor %}
+    </ul>
+    {% else %}
+        <center><h3>Nao ha clubes adicionados!</h3></center>
+    {% endif %}
+
+</div>
+{% endblock %}
